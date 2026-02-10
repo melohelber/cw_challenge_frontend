@@ -11,7 +11,7 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
 
   return (
     <div className={`flex ${isUser ? "justify-end" : "justify-start"} px-6 py-1.5`}>
-      <div className={`max-w-[75%] md:max-w-[65%]`}>
+      <div className={`max-w-[85%] md:max-w-[65%]`}>
         <div
           className={`rounded-2xl px-4 py-2.5 text-sm leading-relaxed break-words ${
             isUser
