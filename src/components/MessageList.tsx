@@ -19,11 +19,13 @@ export default function MessageList({ messages, isLoading }: MessageListProps) {
 
   return (
     <div className="flex-1 overflow-y-auto py-4">
-      {messages.map((message) => (
-        <MessageBubble key={message.id} message={message} />
-      ))}
-      {isLoading && <TypingIndicator />}
-      <div ref={bottomRef} />
+      <div className="mx-auto max-w-3xl">
+        {messages.map((message) => (
+          <MessageBubble key={message.id} message={message} />
+        ))}
+        {isLoading && <TypingIndicator />}
+        <div ref={bottomRef} />
+      </div>
     </div>
   );
 }

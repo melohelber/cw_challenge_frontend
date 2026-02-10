@@ -72,7 +72,21 @@ export default function ChatContainer() {
       {hasMessages ? (
         <MessageList messages={messages} isLoading={isLoading} />
       ) : (
-        <EmptyState onSuggestionClick={handleSendMessage} />
+        <EmptyState />
+      )}
+
+      {!isLoading && (
+        <div className="flex flex-wrap justify-center gap-2 bg-chat-bg px-4 py-2">
+          {SUGGESTION_PROMPTS.map((prompt) => (
+            <button
+              key={prompt}
+              onClick={() => handleSendMessage(prompt)}
+              className="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs text-gray-600 transition-colors hover:border-infinitepay-green hover:text-infinitepay-green"
+            >
+              {prompt}
+            </button>
+          ))}
+        </div>
       )}
 
       <ChatInput onSend={handleSendMessage} isDisabled={isLoading} />
@@ -80,22 +94,21 @@ export default function ChatContainer() {
   );
 }
 
-interface EmptyStateProps {
-  onSuggestionClick: (message: string) => void;
-}
-
-function EmptyState({ onSuggestionClick }: EmptyStateProps) {
+function EmptyState() {
   return (
     <div className="flex flex-1 flex-col items-center justify-center px-4">
       <div className="mb-6">
-        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-infinitepay-green/10">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#00ee26" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 6V2H8" />
-            <path d="m8 18-4 4V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2Z" />
-            <path d="M2 12h2" />
-            <path d="M9 11v2" />
-            <path d="M15 11v2" />
-            <path d="M20 12h2" />
+        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-infinitepay-green/10">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 96 96" fill="none">
+            <rect x="12" y="18" width="72" height="60" rx="16" fill="#00ee26" opacity="0.1"/>
+            <rect x="12" y="18" width="72" height="60" rx="16" stroke="#00ee26" strokeWidth="4.4"/>
+            <line x1="48" y1="18" x2="48" y2="8" stroke="#00ee26" strokeWidth="4.4" strokeLinecap="round"/>
+            <circle cx="48" cy="6" r="5" fill="#00ee26"/>
+            <rect x="2" y="36" width="10" height="16" rx="5" fill="#00ee26" opacity="0.3"/>
+            <rect x="84" y="36" width="10" height="16" rx="5" fill="#00ee26" opacity="0.3"/>
+            <path d="M30 42c0-3.6 3-6.4 6.4-6.4 3.4 0 6.4 2.8 6.4 6.4s-2.8 6.4-6.4 6.4" stroke="#00ee26" strokeWidth="4" strokeLinecap="round"/>
+            <path d="M42.8 42c0-3.6 3-6.4 6.4-6.4 3.4 0 6.4 2.8 6.4 6.4s-2.8 6.4-6.4 6.4" stroke="#00ee26" strokeWidth="4" strokeLinecap="round"/>
+            <path d="M33 61a14 14 0 0 0 20 0" stroke="#00ee26" strokeWidth="4" strokeLinecap="round" fill="none"/>
           </svg>
         </div>
       </div>
@@ -103,21 +116,9 @@ function EmptyState({ onSuggestionClick }: EmptyStateProps) {
       <h2 className="mb-2 text-lg font-semibold text-gray-900">
         Como posso ajudar?
       </h2>
-      <p className="mb-8 max-w-md text-center text-sm text-gray-500">
+      <p className="max-w-md text-center text-sm text-gray-500">
         Sou o assistente virtual da InfinitePay. Pergunte sobre produtos, taxas, transações ou peça suporte.
       </p>
-
-      <div className="flex flex-wrap justify-center gap-2">
-        {SUGGESTION_PROMPTS.map((prompt) => (
-          <button
-            key={prompt}
-            onClick={() => onSuggestionClick(prompt)}
-            className="rounded-full border border-gray-200 bg-white px-4 py-2 text-sm text-gray-700 transition-colors hover:border-infinitepay-green hover:text-infinitepay-green"
-          >
-            {prompt}
-          </button>
-        ))}
-      </div>
     </div>
   );
 }

@@ -50,7 +50,7 @@ export default function ChatInput({ onSend, isDisabled }: ChatInputProps) {
 
   return (
     <div className="border-t border-gray-200 bg-white px-4 py-3">
-      <div className="mx-auto flex max-w-3xl items-end gap-3">
+      <div className="mx-auto flex max-w-3xl items-end gap-2">
         <div className="relative flex-1">
           <textarea
             ref={textareaRef}
@@ -61,11 +61,11 @@ export default function ChatInput({ onSend, isDisabled }: ChatInputProps) {
             disabled={isDisabled}
             rows={1}
             placeholder="Digite sua mensagem..."
-            className="w-full resize-none overflow-hidden rounded-xl border border-gray-300 px-4 py-3 pr-12 text-sm text-gray-900 placeholder-gray-400 outline-none transition-colors focus:border-infinitepay-green focus:ring-2 focus:ring-infinitepay-green/20 disabled:opacity-50 disabled:bg-gray-50"
+            className="block w-full resize-none overflow-hidden rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none transition-colors focus:border-infinitepay-green focus:ring-2 focus:ring-infinitepay-green/20 disabled:opacity-50 disabled:bg-gray-50"
           />
           {charCount > 1800 && (
             <span
-              className={`absolute bottom-1.5 right-14 text-[10px] ${
+              className={`absolute bottom-1.5 right-3 text-[10px] ${
                 isOverLimit ? "text-red-500 font-medium" : "text-gray-400"
               }`}
             >
@@ -76,7 +76,7 @@ export default function ChatInput({ onSend, isDisabled }: ChatInputProps) {
         <button
           onClick={handleSend}
           disabled={!canSend}
-          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-infinitepay-green text-white transition-colors hover:bg-infinitepay-green-dark disabled:opacity-40 disabled:cursor-not-allowed"
+          className="flex h-[46px] w-[46px] shrink-0 items-center justify-center rounded-xl bg-infinitepay-green text-white transition-colors hover:bg-infinitepay-green-dark disabled:opacity-40 disabled:cursor-not-allowed"
           aria-label="Enviar mensagem"
         >
           <SendIcon />
