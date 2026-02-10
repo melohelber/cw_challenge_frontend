@@ -58,7 +58,10 @@ export default function ChatContainer() {
 
   return (
     <div className="flex h-screen flex-col bg-chat-bg">
-      <header className="flex items-center justify-between border-b border-gray-200 bg-white px-4 py-3 md:px-6">
+      <header
+        className="flex items-center justify-between border-b border-gray-200 bg-white px-4 pb-3 md:px-6"
+        style={{ paddingTop: "calc(0.75rem + env(safe-area-inset-top, 0px))" }}
+      >
         <Image
           src="/infinitepay-logo.svg"
           alt="InfinitePay Agent"

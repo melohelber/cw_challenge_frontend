@@ -49,7 +49,10 @@ export default function ChatInput({ onSend, isDisabled }: ChatInputProps) {
   }
 
   return (
-    <div className="border-t border-gray-200 bg-white px-4 py-3">
+    <div
+      className="border-t border-gray-200 bg-white px-4 pt-3"
+      style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom, 0px))" }}
+    >
       <div className="mx-auto flex max-w-3xl items-end gap-2">
         <div className="relative flex-1">
           <textarea
