@@ -14,7 +14,8 @@ class ApiClientError extends Error {
 
 async function apiFetch<T>(
   endpoint: string,
-  options: RequestInit = {}
+  options: RequestInit = {},
+  skipAuthInterceptor = false
 ): Promise<T> {
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
@@ -31,7 +32,7 @@ async function apiFetch<T>(
     headers,
   });
 
-  if (response.status === 401) {
+  if (response.status === 401 && !skipAuthInterceptor) {
     clearToken();
     window.location.href = ROUTES.LOGIN;
     throw new ApiClientError(401, "Session expired");
@@ -54,7 +55,7 @@ export async function loginRequest(
   return apiFetch<LoginResponse>("/auth/login", {
     method: "POST",
     body: JSON.stringify({ username, password }),
-  });
+  }, true);
 }
 
 export async function sendChatMessage(
